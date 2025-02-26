@@ -182,9 +182,7 @@ Este projeto está licenciado sob a **MIT License**. Veja o arquivo [LICENSE](LI
 
 ### 🔹 **9. Contato**
 📌 **Lucas Souza**  
-✉ **Email:** seu-email@exemplo.com  
-🐙 **GitHub:** [seu-usuario](https://github.com/seu-usuario)  
+✉ **Email:** eng.lucassouzas@gmail.com  
+🐙 **GitHub:** [seu-usuario](https://github.com/lucasrbsouza)  
 
 ---
-
-Esse **README** agora está bem formatado para o GitHub, com emojis e markdown organizados. 🎯🚀
