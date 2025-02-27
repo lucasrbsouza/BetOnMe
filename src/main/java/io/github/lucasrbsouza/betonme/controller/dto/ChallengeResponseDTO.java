@@ -7,13 +7,14 @@ import io.github.lucasrbsouza.betonme.entity.enuns.StatusDesafio;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record ChallengeResponseDTO(String titulo,
-                                   String descricao,
-                                   BigDecimal valorAposta,
-                                   @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
-                                   LocalDate dataLimite,
-                                   StatusDesafio statusDesafio,
-                                   @JsonProperty("user") // Muda o nome da chave JSON sem mudar o código
-                                   UserDTO dto
+public record ChallengeResponseDTO(
+        String titulo,
+        String descricao,
+        BigDecimal valorAposta,
+        @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
+        LocalDate dataLimite,
+        StatusDesafio statusDesafio,
+        @JsonProperty("user")
+        UserDTO dto
 ) {
 }
