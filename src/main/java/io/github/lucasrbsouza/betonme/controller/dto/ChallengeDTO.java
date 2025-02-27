@@ -5,6 +5,7 @@ import io.github.lucasrbsouza.betonme.entity.enuns.StatusDesafio;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public record ChallengeDTO(
 
@@ -14,6 +15,7 @@ public record ChallengeDTO(
         @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
         LocalDate dataLimite,
         StatusDesafio statusDesafio,
-        String idUser
+        String idUser,
+        List<String> idFiscais
 ) {
 }

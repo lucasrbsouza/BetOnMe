@@ -6,6 +6,7 @@ import io.github.lucasrbsouza.betonme.entity.enuns.StatusDesafio;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public record ChallengeResponseDTO(
         String titulo,
@@ -15,6 +16,8 @@ public record ChallengeResponseDTO(
         LocalDate dataLimite,
         StatusDesafio statusDesafio,
         @JsonProperty("user")
-        UserDTO dto
+        UserDTO dto,
+        @JsonProperty("fiscais")
+        List<UserDTO> fiscaisDTO
 ) {
 }

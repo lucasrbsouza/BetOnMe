@@ -15,4 +15,5 @@ public class GlobalExceptionHandler {
     public ErroResposta handleRespostaPadraoException(ResourceNotFoundException e){
         return ErroResposta.respostaPadrao(e.getMessage());
     }
+
 }
