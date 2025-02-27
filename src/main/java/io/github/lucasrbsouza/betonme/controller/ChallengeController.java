@@ -34,14 +34,26 @@ public class ChallengeController {
             return ResponseEntity.badRequest().body("Usuário com ID " + dto.idUser() + " não encontrado");
         }
 
+        // Buscar fiscais pelo ID
+        List<User> fiscais = dto.idFiscais() != null
+                ? dto.idFiscais().stream()
+                .map(id -> userService.buscarUserPorId(UUID.fromString(id)))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList()
+                : List.of();
+
         Challenge challengeEntity = mapper.toEntity(dto);
         challengeEntity.setUser(user.get());
+        challengeEntity.setFiscais(fiscais); // Adicionando fiscais ao Challenge
+
         Challenge challenge = service.salvarChallenge(challengeEntity);
 
         UUID idChallenge = challenge.getId();
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{idChallenge}").buildAndExpand(idChallenge).toUri();
 
         return ResponseEntity.created(location).build();
+
     }
 
     @GetMapping("/{id}")
@@ -55,7 +67,7 @@ public class ChallengeController {
     @GetMapping
     public ResponseEntity<List<ChallengeResponseDTO>> buscarTodos() {
         List<Challenge> challenges = service.buscarTodos();
-        if (challenges.isEmpty()){
+        if (challenges.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         List<ChallengeResponseDTO> responseDTOS = challenges.stream().map(mapper::toDto).toList();
@@ -68,10 +80,26 @@ public class ChallengeController {
         Challenge challenge = service.buscarChallengePorId(idChallenge)
                 .orElseThrow(() -> new ResourceNotFoundException("Desafio não encontrado"));
 
+        Optional<User> user = userService.buscarUserPorId(UUID.fromString(dto.idUser()));
+        if (user.isEmpty()) {
+            return ResponseEntity.badRequest().body("Usuário com ID " + dto.idUser() + " não encontrado");
+        }
+
+        // Buscar fiscais pelo ID
+        List<User> fiscais = dto.idFiscais() != null
+                ? dto.idFiscais().stream()
+                .map(fiscalId -> userService.buscarUserPorId(UUID.fromString(fiscalId)))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList()
+                : List.of();
+
         challenge.setTitulo(dto.titulo());
         challenge.setDescricao(dto.descricao());
         challenge.setValorAposta(dto.valorAposta());
         challenge.setStatusDesafio(dto.statusDesafio());
+        challenge.setUser(user.get());
+        challenge.setFiscais(fiscais);
 
         service.atualizarChallenge(challenge);
 
