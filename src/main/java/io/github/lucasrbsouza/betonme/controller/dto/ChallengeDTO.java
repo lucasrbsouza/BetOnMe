@@ -1,12 +1,10 @@
 package io.github.lucasrbsouza.betonme.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.github.lucasrbsouza.betonme.entity.User;
 import io.github.lucasrbsouza.betonme.entity.enuns.StatusDesafio;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 public record ChallengeDTO(
 
